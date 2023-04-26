@@ -2,7 +2,15 @@ import java.util.ArrayList;
 
 public class Startup {
     private ArrayList<String> locationCells;
-    private int numOfHits;
+    private String name;
+
+    public void setName(String n) {
+        name = n;
+    }
+
+    public void setLocationCells(ArrayList<String> loc) {
+        locationCells = loc;
+    }
 
     public String checkYourself(String userInput) {
         String result = "miss";
@@ -14,6 +22,7 @@ public class Startup {
 
         if (locationCells.isEmpty())  {
             result = "kill";
+            System.out.println("Ouch! You sunk " + name + " : ( ");
         }
         else {
             result = "hit";
@@ -21,7 +30,5 @@ public class Startup {
         return result;
     }
 
-    public void setLocationCells(ArrayList<String> locs) {
-        locationCells = locs;
-    }
+
 }

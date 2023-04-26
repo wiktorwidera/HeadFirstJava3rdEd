@@ -1,32 +1,75 @@
+import java.util.ArrayList;
 public class StartupBust {
-    /*
-    GameHelper helper;
-    ArrayList startups;
-    int numOfGuesses = 0;
 
-    void setUpGame() method to create and initialize the Startup objects
-        with names and locations. Display brief instructions to the user
+    private GameHelper helper = new GameHelper();
+    private ArrayList<Startup> startups = new ArrayList<Startup>();
+    private int numOfGuesses = 0;
 
-    void startPlaying() method that asks the player for guess and calls the checkUserGuess()
-    method until all the Startup objects are removed from play
+    private void setUpGame() {
+        // first makesome Startups and give them locations
+        Startup one = new Startup();
+        one.setName("poniez");
+        Startup two = new Startup();
+        two.setName("hacqi");
+        Startup three = new Startup();
+        three.setName("cabista");
 
-    void checkUserGuess() method that loops through all remaining Startup objects and calls
-    each Startup object's checkYourself() method
+        startups.add(one);
+        startups.add(two);
+        startups.add(three);
 
-    void finishGame() method that prints a message about the user's performance,
-    based on how many guesses it took to sink all of the Startup objects
+        System.out.println("Your goal is to sink three Startups.");
+        System.out.println("poniez, hacqi, cabista");
+        System.out.println("Try to sink them all in the fewest number of guesses");
 
-     */
-/*
-    void setUpGame() {
-        create three Startup objects;
-        set a name for each Startup;
-        add the Startups (the ArrayList);
-        repeat with each of the Startup objcts in the startups list:
-            call the placeStartup() method on the helper object, to get a randomly-selected
-                location for this Startup (three cells, vertically or horizontally aligned, on 7x7 grid);
-            set the location for each Startup based on the result of the placeStartup() call
+        for (Startup startup : startups) {
+            ArrayList<String> newLocation = helper.placeStartup(3);
+            startup.setLocationCells(newLocation);
+        }
     }
 
- */
+    void startPlaying() {
+        while (!startups.isEmpty()) {
+            String userGuess = helper.getUserInput("Enter a guess: ");
+            checkUserGuess(userGuess);
+        }
+        finishGame();
+    }
+
+    void checkUserGuess(String userGuess) {
+        numOfGuesses++;
+        String result = "miss";
+
+        for (Startup startupToTest : startups) {
+            result = startupToTest.checkYourself(userGuess);
+
+            if (result.equals("hit"))   {
+                break;
+            }
+            if (result.equals("kill")) {
+                startups.remove(startupToTest);
+                break;
+            }
+        }
+        System.out.println(result);
+
+    }
+
+    void finishGame() {
+        System.out.println("Game over");
+        if (numOfGuesses < 18) {
+            System.out.println("It only took you " + numOfGuesses + " guesses.");
+            System.out.println("You got out before your options sank.");
+        }
+        else {
+            System.out.println("Took you long enough. " + numOfGuesses + " guesses.");
+            System.out.println("Fish are dancing with your options");
+        }
+    }
+
+    public static void main(String[] args) {
+        StartupBust game = new StartupBust();
+        game.setUpGame();
+        game.startPlaying();
+    }
 }
