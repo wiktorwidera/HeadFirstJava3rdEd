@@ -30,7 +30,7 @@ public class StartupBust {
 
     void startPlaying() {
         while (!startups.isEmpty()) {
-            String userGuess = helper.getUserInput("Enter a guess: ");
+            String userGuess = helper.getUserInput("Enter a guess");
             checkUserGuess(userGuess);
         }
         finishGame();
@@ -42,6 +42,7 @@ public class StartupBust {
 
         for (Startup startupToTest : startups) {
             result = startupToTest.checkYourself(userGuess);
+            System.out.println(result);
 
             if (result.equals("hit"))   {
                 break;

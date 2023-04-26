@@ -27,14 +27,14 @@ public class GameHelper {
                 startupCoords[i] = location; // put current location in array
                 location += increment; // calculate the next location
             }
-// System.out.println("Trying: " + Arrays.toString(startupCoords));
+ // System.out.println("Trying: " + Arrays.toString(startupCoords));
             if (startupFits(startupCoords, increment)) { // startup fits on the grid?
                 success = coordsAvailable(startupCoords); // ...and locations aren't taken?
             } // end loop
         } // end while
         savePositionToGrid(startupCoords); // coords passed checks, save
         ArrayList<String> alphaCells = convertCoordsToAlphaFormat(startupCoords);
-// System.out.println("Placed at: "+ alphaCells);
+ // System.out.println("Placed at: "+ alphaCells);
         return alphaCells;
     } //end placeStartup
     private boolean startupFits(int[] startupCoords, int increment) {
