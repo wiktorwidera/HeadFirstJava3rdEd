@@ -42,7 +42,6 @@ public class StartupBust {
 
         for (Startup startupToTest : startups) {
             result = startupToTest.checkYourself(userGuess);
-            System.out.println(result);
 
             if (result.equals("hit"))   {
                 break;
