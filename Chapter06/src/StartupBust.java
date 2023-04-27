@@ -52,7 +52,6 @@ public class StartupBust {
             }
         }
         System.out.println(result);
-
     }
 
     void finishGame() {
