@@ -1,10 +1,10 @@
-public abstract class Animal {
+public abstract class AnimalCh09 {
     private String name;
 
     public String getName() {
         return name;
     }
-    public Animal(String theName) {
+    public AnimalCh09(String theName) {
         name = theName;
     }
 }
