@@ -6,7 +6,8 @@ public class ChainedStream {
         List<String> strings = List.of("I", "am", "a", "list", "of", "Strings");
 
         List<String> result = strings.stream()
-                .sorted()
+                .sorted((s1, s2) -> s1.compareToIgnoreCase(s2))
+                .skip(2)
                 .limit(4)
                 .collect(Collectors.toList());
 
