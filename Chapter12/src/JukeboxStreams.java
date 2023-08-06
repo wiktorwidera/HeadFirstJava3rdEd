@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,15 @@ public class JukeboxStreams {
                 .filter(artist -> !artist.equals("The Beatles"))
                 .collect(Collectors.toList());
         System.out.println(result);
-    }
 
+        List<Song> resul2 = songs.stream()
+                .sorted((o1, o2) -> o1.getYear() - o2.getYear())
+                .collect(Collectors.toList());
+        System.out.println(resul2);
+
+        List<Song> result3 = songs.stream()
+                .sorted(Comparator.comparingInt(Song::getYear))
+                .collect(Collectors.toList());
+        System.out.println(result3);
+    }
 }
