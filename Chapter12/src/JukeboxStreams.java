@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class JukeboxStreams {
@@ -49,5 +50,13 @@ public class JukeboxStreams {
                 .sorted(Comparator.comparingInt(Song::getYear))
                 .collect(Collectors.toList());
         System.out.println(result3);
+
+        boolean result4 = songs.stream()
+                .anyMatch(song -> song.getGenre().equals("R&B"));
+
+        Optional<Song> result5 = songs.stream()
+                .filter(s -> s.getYear() == 1995)
+                .findFirst();
+        System.out.println(result5);
     }
 }
